@@ -312,6 +312,9 @@ export class MediaManager
 				var cameraWidth = screenVideo.videoWidth * (this.camera_percent/100);
 				var cameraHeight = (cameraVideo.videoHeight/cameraVideo.videoWidth)*cameraWidth
 
+				var positionX;
+				var positionY;
+
 				// var positionX = (canvas.width - cameraWidth) - this.camera_margin;
 				// var positionY;
 				// if (this.camera_location == "top") {
@@ -360,15 +363,19 @@ export class MediaManager
 						positionY = (canvas.height - cameraHeight);
 						break;
 				}
+
 				canvasContext.drawImage(cameraVideo, positionX, positionY, cameraWidth, cameraHeight);
 			}, 66);
 		}, true)
 	}
 
-	changeCameraLocation(location, margin) 
+	changeCameraLocation(location) 
 	{
 		this.camera_location = location;
-		this.camera_margin = margin;
+	}
+
+	changeCameraSize(percent) {
+		this.camera_percent = percent;
 	}
 
 	/**
