@@ -1445,6 +1445,10 @@ export class WebRTCAdaptor
     this.mediaManager.closeStream();
   };
 
+	changeCameraLocation() {
+		console.log("FUCKING STUPID FUnCTION");
+	}
+
 }
 
 
