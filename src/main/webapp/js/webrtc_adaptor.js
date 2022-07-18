@@ -1445,7 +1445,7 @@ export class WebRTCAdaptor
     this.mediaManager.closeStream();
   }
 
-	changeCameraLocation(location) {this.mediaManager.changeCameraLocation(location);}
+	changeCameraLocation(location, margin) {this.mediaManager.changeCameraLocation(location, margin);}
 
 }
 
