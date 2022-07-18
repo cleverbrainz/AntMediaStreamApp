@@ -329,7 +329,7 @@ export class MediaManager
 
 	changeCameraLocation(location) 
 	{
-		this.camera_location = locatin;
+		this.camera_location = location;
 	}
 	
 	/**
