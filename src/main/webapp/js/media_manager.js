@@ -374,10 +374,6 @@ export class MediaManager
 		this.camera_location = location;
 	}
 
-	changeCameraSize(percent) {
-		this.camera_percent = percent;
-	}
-
 	/**
 	 * This function does these:
 	 * 	1. Remove the audio track from the stream provided if it is camera. Other case 
