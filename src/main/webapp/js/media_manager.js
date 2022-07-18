@@ -21,9 +21,9 @@ export class MediaManager
 		
 		/**
 		 * The cam_location below is effective when camera and screen is send at the same time.
-		 * possible values are top and bottom. It's on right all the time
+		 * possible values are TL, TC, TR, CL, CE, CR, BL, BC, BR.
 		 */
-		this.camera_location = "top"
+		this.camera_location = "TL"
 
 		/**
 		 * The cam_margin below is effective when camera and screen is send at the same time.
@@ -312,18 +312,8 @@ export class MediaManager
 				var cameraWidth = screenVideo.videoWidth * (this.camera_percent/100);
 				var cameraHeight = (cameraVideo.videoHeight/cameraVideo.videoWidth)*cameraWidth
 
-				var positionX;
-				var positionY;
-
-				// var positionX = (canvas.width - cameraWidth) - this.camera_margin;
-				// var positionY;
-				// if (this.camera_location == "top") {
-				// 	positionY = this.camera_margin;
-				// }
-				// else { //if not top, make it bottom
-				// 	//draw camera on right bottom corner
-				// 	positionY = (canvas.height - cameraHeight) - this.camera_margin;
-				// }
+				var positionX = 0;
+				var positionY = 0;
 
 				switch(this.camera_location) {
 					case "TL":
@@ -361,6 +351,10 @@ export class MediaManager
 					case "BR":
 						positionX = (canvas.width - cameraWidth);
 						positionY = (canvas.height - cameraHeight);
+						break;
+					default:
+						positionX = 0;
+						positionY = 0;
 						break;
 				}
 
