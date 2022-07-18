@@ -312,15 +312,53 @@ export class MediaManager
 				var cameraWidth = screenVideo.videoWidth * (this.camera_percent/100);
 				var cameraHeight = (cameraVideo.videoHeight/cameraVideo.videoWidth)*cameraWidth
 
-				var positionX = (canvas.width - cameraWidth) - this.camera_margin;
-				var positionY;
+				// var positionX = (canvas.width - cameraWidth) - this.camera_margin;
+				// var positionY;
+				// if (this.camera_location == "top") {
+				// 	positionY = this.camera_margin;
+				// }
+				// else { //if not top, make it bottom
+				// 	//draw camera on right bottom corner
+				// 	positionY = (canvas.height - cameraHeight) - this.camera_margin;
+				// }
 
-				if (this.camera_location == "top") {
-					positionY = this.camera_margin;
-				}
-				else { //if not top, make it bottom
-					//draw camera on right bottom corner
-					positionY = (canvas.height - cameraHeight) - this.camera_margin;
+				switch(this.camera_location) {
+					case "TL":
+						positionX = 0;
+						positionY = 0;
+						break;
+					case "TC":
+						positionX = (canvas.width - cameraWidth) / 2;
+						positionY = 0;
+						break;
+					case "TR":
+						positionX = (canvas.width - cameraWidth);
+						positionY = 0;
+						break;
+					case "CL":
+						positionX = 0;
+						positionY = (canvas.height - cameraHeight) / 2;
+						break;
+					case "CEN":
+						positionX = (canvas.width - cameraWidth) / 2;
+						positionY = (canvas.height - cameraHeight) / 2;
+						break;
+					case "CR":
+						positionX = (canvas.width - cameraWidth);
+						positionY = (canvas.height - cameraHeight) / 2;
+						break;
+					case "BL":
+						positionX = 0;
+						positionY = (canvas.height - cameraHeight);
+						break;
+					case "BC":
+						positionX = (canvas.width - cameraWidth) / 2;
+						positionY = (canvas.height - cameraHeight);
+						break;
+					case "BR":
+						positionX = (canvas.width - cameraWidth);
+						positionY = (canvas.height - cameraHeight);
+						break;
 				}
 				canvasContext.drawImage(cameraVideo, positionX, positionY, cameraWidth, cameraHeight);
 			}, 66);
