@@ -327,11 +327,12 @@ export class MediaManager
 		}, true)
 	}
 
-	changeCameraLocation(location) 
+	changeCameraLocation(location, margin) 
 	{
 		this.camera_location = location;
+		this.camera_margin = margin;
 	}
-	
+
 	/**
 	 * This function does these:
 	 * 	1. Remove the audio track from the stream provided if it is camera. Other case 
