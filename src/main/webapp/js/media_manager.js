@@ -326,6 +326,11 @@ export class MediaManager
 			}, 66);
 		}, true)
 	}
+
+	changeCameraLocation(location) 
+	{
+		this.camera_location = locatin;
+	}
 	
 	/**
 	 * This function does these:
