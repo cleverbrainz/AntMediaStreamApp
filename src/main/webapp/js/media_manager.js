@@ -21,9 +21,9 @@ export class MediaManager
 		
 		/**
 		 * The cam_location below is effective when camera and screen is send at the same time.
-		 * possible values are top and bottom. It's on right all the time
+		 * possible values are TL, TC, TR, CL, CE, CR, BL, BC, BR.
 		 */
-		this.camera_location = "top"
+		this.camera_location = "TL"
 
 		/**
 		 * The cam_margin below is effective when camera and screen is send at the same time.
@@ -313,21 +313,62 @@ export class MediaManager
 				var cameraWidth = screenVideo.videoWidth * (this.camera_percent/100);
 				var cameraHeight = (cameraVideo.videoHeight/cameraVideo.videoWidth)*cameraWidth
 
-				var positionX = (canvas.width - cameraWidth) - this.camera_margin;
-				var positionY;
+				var positionX = 0;
+				var positionY = 0;
 
-				if (this.camera_location == "top") {
-					positionY = this.camera_margin;
+				switch(this.camera_location) {
+					case "TL":
+						positionX = 0;
+						positionY = 0;
+						break;
+					case "TC":
+						positionX = (canvas.width - cameraWidth) / 2;
+						positionY = 0;
+						break;
+					case "TR":
+						positionX = (canvas.width - cameraWidth);
+						positionY = 0;
+						break;
+					case "CL":
+						positionX = 0;
+						positionY = (canvas.height - cameraHeight) / 2;
+						break;
+					case "CEN":
+						positionX = (canvas.width - cameraWidth) / 2;
+						positionY = (canvas.height - cameraHeight) / 2;
+						break;
+					case "CR":
+						positionX = (canvas.width - cameraWidth);
+						positionY = (canvas.height - cameraHeight) / 2;
+						break;
+					case "BL":
+						positionX = 0;
+						positionY = (canvas.height - cameraHeight);
+						break;
+					case "BC":
+						positionX = (canvas.width - cameraWidth) / 2;
+						positionY = (canvas.height - cameraHeight);
+						break;
+					case "BR":
+						positionX = (canvas.width - cameraWidth);
+						positionY = (canvas.height - cameraHeight);
+						break;
+					default:
+						positionX = 0;
+						positionY = 0;
+						break;
 				}
-				else { //if not top, make it bottom
-					//draw camera on right bottom corner
-					positionY = (canvas.height - cameraHeight) - this.camera_margin;
-				}
+
 				canvasContext.drawImage(cameraVideo, positionX, positionY, cameraWidth, cameraHeight);
 			}, 66);
 		}, true)
 	}
-	
+
+	changeCameraLocation(location) 
+	{
+		this.camera_location = location;
+	}
+
 	/**
 	 * This function does these:
 	 * 	1. Remove the audio track from the stream provided if it is camera. Other case 
